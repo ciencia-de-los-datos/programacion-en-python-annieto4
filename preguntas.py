@@ -50,7 +50,7 @@ def pregunta_02():
     """
     lista_vocales = []
     vouels = []
-    for vouel in columns:
+    for vouel in colums:
         vouels.append(vouel[0])
 
     for i in vouels:     
