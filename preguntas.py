@@ -48,7 +48,16 @@ def pregunta_02():
     ]
 
     """
-    return
+    lista_vocales = []
+    vouels = []
+    for vouel in columns:
+        vouels.append(vouel[0])
+
+    for i in vouels:     
+        mi_tupla = (i, vouels.count(i))
+        lista_vocales.append(mi_tupla)
+
+    return sorted(set(lista_vocales))
 
 
 def pregunta_03():
