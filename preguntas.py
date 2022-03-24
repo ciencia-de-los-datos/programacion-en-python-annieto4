@@ -73,7 +73,7 @@ def pregunta_03():
         ("D", 31),
         ("E", 67),
     ]
-
+        t
     """
     return
 
