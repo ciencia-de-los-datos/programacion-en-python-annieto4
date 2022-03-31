@@ -13,9 +13,7 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 """
 import csv
 
-with open("data.csv", newline='') as f:
-    datos = csv.reader(f, delimiter='\t')
-    colums = list(datos)
+
         
 
 def pregunta_01():
@@ -25,6 +23,9 @@ def pregunta_01():
     Rta/
     214
     """
+    with open("data.csv", newline='') as f:
+        datos = csv.reader(f, delimiter='\t')
+        colums = list(datos)
 
     suma = 0
     for num in colums:
@@ -48,6 +49,11 @@ def pregunta_02():
     ]
 
     """
+
+    with open("data.csv", newline='') as f:
+        datos = csv.reader(f, delimiter='\t')
+        colums = list(datos)
+
     lista_vocales = []
     vouels = []
     for vouel in colums:
@@ -75,8 +81,26 @@ def pregunta_03():
     ]
         t
     """
-    return
+    with open("data.csv", newline='') as f:
+        datos = csv.reader(f, delimiter='\t')
+        columns = list(datos)
 
+    vocales = []
+    valores = []
+    resultado = []
+    suma = 0
+    for values in columns:
+        valores.append((values[0], values[1]))
+        vocales.append(values[0])
+    
+    for vo in set(vocales):
+        for v, n in valores:
+            if v == vo:
+                suma += int(n)
+        resultado.append((vo, suma))
+        suma = 0          
+
+    return sorted(resultado)
 
 def pregunta_04():
     """
