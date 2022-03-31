@@ -47,7 +47,7 @@ def pregunta_02():
         ("D", 6),
         ("E", 14),
     ]
-
+	t
     """
 
     with open("data.csv", newline='') as f:
