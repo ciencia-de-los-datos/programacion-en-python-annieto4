@@ -46,7 +46,7 @@ def pregunta_02():
         ("D", 6),
         ("E", 14),
     ]
-
+	t
     """
     lista_vocales = []
     vouels = []
