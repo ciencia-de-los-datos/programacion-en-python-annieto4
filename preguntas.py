@@ -79,7 +79,7 @@ def pregunta_03():
         ("D", 31),
         ("E", 67),
     ]
-        t
+        
     """
     with open("data.csv", newline='') as f:
         datos = csv.reader(f, delimiter='\t')
