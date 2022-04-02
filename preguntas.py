@@ -124,8 +124,26 @@ def pregunta_04():
     ]
 
     """
-    return
+    from operator import itemgetter
 
+    with open('data.csv', 'r') as f:
+        data = f.readlines()
+
+    data = [row.split('\t') for row in data]
+    data = [row[2] for row in data]
+    months = [row[5:7] for row in data]
+
+    mesesCantidad = {}
+
+    for mes in months:
+        if mes in mesesCantidad.keys():
+            mesesCantidad[mes] = mesesCantidad[mes] + 1
+        else:
+            mesesCantidad[mes] = 1
+
+    tuplas = [(key, val) for key, val in mesesCantidad.items()]
+    resultado = sorted(tuplas, key=itemgetter(0))
+    return resultado
 
 def pregunta_05():
     """
@@ -142,7 +160,28 @@ def pregunta_05():
     ]
 
     """
-    return
+    from operator import itemgetter
+
+    with open('data.csv', 'r') as f:
+        data = f.readlines()
+
+
+    data = [row.split('\t') for row in data]
+    data = [row[:2] for row in data]
+    
+    resultados = {}
+   
+    for letra, valor in data:
+        valor = int(valor)
+        if letra in resultados.keys():
+            resultados[letra].append(valor)
+        else:
+            resultados[letra] = [valor]
+
+    tupla = [(key, max(valor), min(valor)) for key, valor in resultados.items()]
+    tupla = sorted(tupla, key=itemgetter(0))
+        
+    return tupla
 
 
 def pregunta_06():
