@@ -206,7 +206,33 @@ def pregunta_06():
     ]
 
     """
-    return
+    from operator import itemgetter
+
+    with open('data.csv', 'r') as f:
+        data = f.readlines()
+
+    data = [row.split('\t') for row in data]
+    data = [row[4] for row in data]
+    data = [row[:-1] for row in data]
+    data = [row.split(',') for row in data]
+
+    resultado = dict()
+    
+    for row in data:
+        for dupla in row:
+            key, valor = dupla.split(':')
+            valor = int(valor)
+            if key in resultado.keys():
+                resultado[key].append(valor)
+            else:
+                resultado[key] = [valor]
+        
+    tupla = [(key, min(valor), max(valor)) for key, valor in resultado.items()]
+    tupla = sorted(tupla, key=itemgetter(0))
+     
+
+    return tupla
+
 
 
 def pregunta_07():
@@ -230,7 +256,27 @@ def pregunta_07():
     ]
 
     """
-    return
+
+    from operator import itemgetter
+
+    with open('data.csv', 'r') as file:
+        data = file.readlines()
+
+    data = [row.split('\t') for row in data]
+    data = [(row[1], row[0]) for row in data]
+
+    resultado = dict()
+    for key , value in data:
+        key = int(key)
+        if key in resultado.keys():
+            resultado[key].append(value)
+        else:
+            resultado[key] = [value]
+
+    tupla = [(key, value) for key, value in resultado.items()]
+    tupla = sorted(tupla, key=itemgetter(0))
+
+    return tupla
 
 
 def pregunta_08():
@@ -255,7 +301,27 @@ def pregunta_08():
     ]
 
     """
-    return
+
+    from operator import itemgetter
+
+    with open('data.csv', 'r') as file:
+        data = file.readlines()
+
+    data = [row.split('\t') for row in data]
+    data = [(row[1], row[0]) for row in data]
+
+    resultado = dict()
+    for key , value in data:
+        key = int(key)
+        if key in resultado.keys():
+            resultado[key].append(value)
+        else:
+            resultado[key] = [value]
+
+    tupla = [(key, sorted(list(set(value)))) for key, value in resultado.items()]
+    tupla = sorted(tupla, key=itemgetter(0))
+
+    return tupla
 
 
 def pregunta_09():
