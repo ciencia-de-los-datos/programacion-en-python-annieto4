@@ -11,11 +11,6 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 """
-import csv
-
-
-        
-
 def pregunta_01():
     """
     Retorne la suma de la segunda columna.
@@ -23,6 +18,8 @@ def pregunta_01():
     Rta/
     214
     """
+    import csv
+
     with open("data.csv", newline='') as f:
         datos = csv.reader(f, delimiter='\t')
         colums = list(datos)
@@ -50,6 +47,7 @@ def pregunta_02():
 	t
     """
 
+    import csv
     with open("data.csv", newline='') as f:
         datos = csv.reader(f, delimiter='\t')
         colums = list(datos)
@@ -81,6 +79,7 @@ def pregunta_03():
     ]
     t    
     """
+    import csv
     with open("data.csv", newline='') as f:
         datos = csv.reader(f, delimiter='\t')
         columns = list(datos)
@@ -212,12 +211,12 @@ def pregunta_06():
         data = f.readlines()
 
     data = [row.split('\t') for row in data]
-    data = [row[4].split(',') for row in data]
+    data = [row[4] for row in data]
     data = [row[:-1] for row in data]
-
+    data = [row.split(',') for row in data]
 
     resultado = dict()
-    
+
     for row in data:
         for dupla in row:
             key, valor = dupla.split(':')
@@ -226,13 +225,11 @@ def pregunta_06():
                 resultado[key].append(valor)
             else:
                 resultado[key] = [valor]
-        
+
     tupla = [(key, min(valor), max(valor)) for key, valor in resultado.items()]
     tupla = sorted(tupla, key=itemgetter(0))
 
     return tupla
-
-print(pregunta_06())
 
 def pregunta_07():
     """
@@ -417,7 +414,28 @@ def pregunta_11():
 
 
     """
-    return
+
+    with open('data.csv', 'r') as f:
+        data = f.readlines()
+
+    data = [row.split('\t') for row in data]
+    data = [(row[1], row[3]) for row in data]
+
+    resultado = dict()
+    for key, value in data:
+        value = value.split(',')
+        for letter in value:
+            key = int(key)
+            if letter in resultado.keys():
+                resultado[letter] += key
+            else:
+                resultado[letter] = key
+
+    resultado = sorted(resultado.items())
+    resultado = dict(resultado)
+
+    return resultado
+
 
 
 def pregunta_12():
@@ -435,4 +453,30 @@ def pregunta_12():
     }
 
     """
-    return
+    from operator import itemgetter
+
+    with open('data.csv', 'r') as f:
+        data = f.readlines()
+
+    data =[row.split('\t') for row in data]
+    data =[(row[0], row[4].strip('\n')) for row in data]
+    data =[(row1, row2.split(',')) for row1, row2 in data]
+    
+    tuples = dict()
+
+    for letter, values in data:
+        for duple in values:
+            duple = duple.split(':')
+            duple[1] = int(duple[1])
+            if letter in tuples.keys():
+                tuples[letter].append(duple[1])
+            else:
+                tuples[letter] = [duple[1]]
+    
+    tuples = [(key, sum(values)) for key, values in tuples.items()]
+    tuples = sorted(tuples, key=itemgetter(0))
+    resultado = dict(tuples)
+
+    return resultado
+
+print(pregunta_12())
