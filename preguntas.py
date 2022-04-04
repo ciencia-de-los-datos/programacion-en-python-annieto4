@@ -229,11 +229,10 @@ def pregunta_06():
         
     tupla = [(key, min(valor), max(valor)) for key, valor in resultado.items()]
     tupla = sorted(tupla, key=itemgetter(0))
-     
 
     return tupla
 
-
+print(pregunta_06())
 
 def pregunta_07():
     """
@@ -353,16 +352,21 @@ def pregunta_09():
     data =[row[4].strip('\n') for row in data]
     data =[row.split(',') for row in data]
     
-    resultado = list()
+    duplas = list()
 
     for row in data:
         for dupla in row:
             key, value = dupla.split(':')
-            resultado.append(key)        
+            duplas.append(key)        
 
-    resultado = {row:resultado.count(row) for row in resultado}
-    resultado = sorted(resultado.items())
-    return resultado
+
+    tuplas = {row:duplas.count(row) for row in duplas}
+    tuplas = sorted(tuplas.items())
+    
+    res = dict(tuplas)
+
+    return res
+
 
 
 def pregunta_10():
@@ -392,6 +396,7 @@ def pregunta_10():
     data = [(row[0],len(row[3].split(',')),len(row[4].split(','))) for row in data]
 
     return data
+
 
 
 def pregunta_11():
